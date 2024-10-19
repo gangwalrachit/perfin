@@ -1,0 +1,4 @@
+service/venv/
+service/*/__pycache__/
+service/*/*/__pycache__/
+run_client.py
