@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package transaction;
+
+import "google/protobuf/timestamp.proto";
+
+
+// The Transaction API service definition.
+service TransactionAPI {
+    // Insert a new transaction
+    rpc InsertTransaction (Transaction) returns (TransactionResponse);
+}
+
+// Transaction
+message Transaction {
+    // Identifer for the transaction
+    string id = 1;
+
+    // Transaction type
+    TransactionType type = 2;
+
+    // Transaction amount
+    float amount = 3;
+
+    // Transaction sender
+    string sender = 4;
+
+    // Transaction receiver
+    string receiver = 5;
+
+    // Transaction timestamp
+    google.protobuf.Timestamp timestamp = 7;
+
+    // User of the transaction
+    User user = 8;
+}
+
+// Response for inserting the Transaction
+message TransactionResponse {
+    // Indentifier of the Transaction
+    string id = 1;
+
+    // Type of the transaction
+    TransactionType type = 2;
+
+    // Operation being performed
+    Operation operation = 3;
+
+    // Status of the Transaction
+    TransactionStatus status = 4;
+}
+
+// Type of the transaction
+enum TransactionType {
+    // Unspecified type (default)
+    TRANSACTION_TYPE_UNSPECIFIED = 0;
+
+    // Credit
+    TRANSACTION_TYPE_CREDIT = 1;
+
+    // Debit
+    TRANSACTION_TYPE_DEBIT = 2;
+}
+
+// Operation being performed
+enum Operation {
+    // Unspecified operation (default)
+    OPERATION_UNSPECIFIED = 0;
+
+    // Insert Operation
+    OPERATION_INSERT = 1;
+}
+
+// Status of the Transaction
+enum TransactionStatus {
+    // Unspecified status (default)
+    TRANSACTION_STATUS_UNSPECIFIED = 0;
+
+    // Success status
+    TRANSACTION_STATUS_SUCCESS = 1;
+
+    // Failure status
+    TRANSACTION_STATUS_FAILURE = 2;
+}
+
+message User {
+    // Identifer for the user
+    string id = 1;
+
+    // First name of the user
+    string first_name = 2;
+
+    // Middle name of the user
+    string middle_name = 3;
+
+    // Last name of the user
+    string last_name = 4;
+}
