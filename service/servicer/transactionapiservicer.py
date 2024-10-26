@@ -1,16 +1,18 @@
+import grpc
 import logging
 
-from genproto.transaction.transaction_api_pb2_grpc import (
+from genproto.transaction_api_pb2_grpc import (
     TransactionAPIServicer,
 )
-from genproto.transaction.transaction_api_pb2 import (
+from genproto.transaction_api_pb2 import (
     Operation,
+    Transaction,
     TransactionResponse,
     TransactionStatus,
 )
 
 
-LOGGER = logging.getLogger(__name__)
+LOG = logging.getLogger(__name__)
 
 
 class TransactionAPIServicer(TransactionAPIServicer):
@@ -18,13 +20,18 @@ class TransactionAPIServicer(TransactionAPIServicer):
     Class to start the transaction API servicer.
     """
 
-    def InsertTransaction(self, request, context):
-        """Insert transaction
+    def InsertTransaction(
+        self, request: Transaction, context: grpc.ServicerContext
+    ) -> TransactionResponse:
+        """
+        Insert transaction
 
         :param request: Request received.
-        :param context: Context???
+        :param context: Context to manage state and properties of an RPC.
         """
-        LOGGER.info(f"Received request:\n{request}")
+        LOG.info(type(context))
+        LOG.info(context)
+        LOG.info(f"Received request:\n{request}")
         self.process_request(request)
 
         return TransactionResponse(
@@ -34,11 +41,11 @@ class TransactionAPIServicer(TransactionAPIServicer):
             status=TransactionStatus.TRANSACTION_STATUS_SUCCESS,
         )
 
-    def process_request(self, request):
+    def process_request(self, request: Transaction) -> None:
         """
         Process the request
 
         :param request: Request received.
         """
         # TODO: add request details to a fixed storage
-        LOGGER.info("Request processed successfully!")
+        LOG.info("Request processed successfully!")
