@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-from genproto.transaction import transaction_api_pb2 as genproto_dot_transaction_dot_transaction__api__pb2
+from genproto import transaction_api_pb2 as genproto_dot_transaction__api__pb2
 
 GRPC_GENERATED_VERSION = '1.67.0'
 GRPC_VERSION = grpc.__version__
@@ -18,7 +18,7 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in genproto/transaction/transaction_api_pb2_grpc.py depends on'
+        + f' but the generated code in genproto/transaction_api_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
@@ -37,8 +37,8 @@ class TransactionAPIStub(object):
         """
         self.InsertTransaction = channel.unary_unary(
                 '/transaction.TransactionAPI/InsertTransaction',
-                request_serializer=genproto_dot_transaction_dot_transaction__api__pb2.Transaction.SerializeToString,
-                response_deserializer=genproto_dot_transaction_dot_transaction__api__pb2.TransactionResponse.FromString,
+                request_serializer=genproto_dot_transaction__api__pb2.Transaction.SerializeToString,
+                response_deserializer=genproto_dot_transaction__api__pb2.TransactionResponse.FromString,
                 _registered_method=True)
 
 
@@ -58,8 +58,8 @@ def add_TransactionAPIServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'InsertTransaction': grpc.unary_unary_rpc_method_handler(
                     servicer.InsertTransaction,
-                    request_deserializer=genproto_dot_transaction_dot_transaction__api__pb2.Transaction.FromString,
-                    response_serializer=genproto_dot_transaction_dot_transaction__api__pb2.TransactionResponse.SerializeToString,
+                    request_deserializer=genproto_dot_transaction__api__pb2.Transaction.FromString,
+                    response_serializer=genproto_dot_transaction__api__pb2.TransactionResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -88,8 +88,8 @@ class TransactionAPI(object):
             request,
             target,
             '/transaction.TransactionAPI/InsertTransaction',
-            genproto_dot_transaction_dot_transaction__api__pb2.Transaction.SerializeToString,
-            genproto_dot_transaction_dot_transaction__api__pb2.TransactionResponse.FromString,
+            genproto_dot_transaction__api__pb2.Transaction.SerializeToString,
+            genproto_dot_transaction__api__pb2.TransactionResponse.FromString,
             options,
             channel_credentials,
             insecure,
