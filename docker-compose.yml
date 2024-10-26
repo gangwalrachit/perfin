@@ -1,0 +1,25 @@
+services:
+  perfin-service:
+    build:
+      context: ./service
+    image: perfin-service # Explicitly set the image name
+    container_name: perfin-service
+    ports:
+      - "50051:50051"
+    networks:
+      - perfin-network
+
+  perfin-pyclient:
+    build:
+      context: ./pyclient
+    image: perfin-pyclient
+    container_name: perfin-pyclient
+    depends_on:
+      - perfin-service
+    networks:
+      - perfin-network
+
+networks:
+  perfin-network:
+    name: perfin-network # Custom network name
+    driver: bridge

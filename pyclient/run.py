@@ -11,7 +11,7 @@ from genproto.transaction_api_pb2 import (
 
 
 def run():
-    host = "localhost"
+    host = "perfin-service"
     port = 50051
     channel = grpc.insecure_channel("{}:{}".format(host, port))
     stub = TransactionAPIStub(channel)
