@@ -1,3 +1,7 @@
+pyclient/venv/
+pyclient/*/__pycache__/
+pyclient/*/*/__pycache__/
+
 service/venv/
 service/*/__pycache__/
 service/*/*/__pycache__/
